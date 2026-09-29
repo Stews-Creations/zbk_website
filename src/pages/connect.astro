@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../data/site';
+const socials = [
+  { name: 'YouTube', handle: '@MiniStew', note: 'Build videos & progress updates', href: 'https://www.youtube.com/@MiniStew', icon: 'youtube' },
+  { name: 'Instagram', handle: '@theministew', note: 'Screenshots & behind the scenes', href: 'https://www.instagram.com/theministew/', icon: 'instagram' },
+  { name: 'TikTok', handle: '@theministew', note: 'Short clips from the builds', href: 'https://www.tiktok.com/@theministew', icon: 'tiktok' },
+];
+---
+<Layout title="Connect | MiniStew & BigStew" description="Follow MiniStew's Minecraft builds, meet ZBK developer BigStew, and join the conversation on Discord." theme="nacht">
+  <section class="connect-intro wrap">
+    <p class="eyebrow">CONNECT / ZOMBIES BUILD KIT</p>
+    <h1>Meet the <em>team.</em></h1>
+    <p>Two brothers recreating Zombies in Minecraft.<br />Follow the builds, explore the tools, or get in touch.</p>
+  </section>
+
+  <section class="profiles wrap" aria-label="The team">
+    <article class="profile creator">
+      <div class="character-stage">
+        <img class="character" src={url('images/ministew-cutout.png')} alt="MiniStew's Minecraft character in a brown adventurer outfit" width="1024" height="1536" fetchpriority="high" />
+        <img class="creator-logo" src={url('images/ministew-logo.png')} alt="MiniStew logo" width="600" height="600" />
+      </div>
+      <div class="profile-copy">
+        <p class="eyebrow">MAP BUILDER &amp; CREATOR</p>
+        <h2>MiniStew</h2>
+        <p>Recreating the maps, one block at a time. Sharing the process from early layouts to the finished build.</p>
+        <a class="profile-link" href="https://www.youtube.com/@MiniStew" target="_blank" rel="noopener noreferrer"><img src={url('icons/youtube.svg')} alt="" width="22" height="22" />Watch on YouTube <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+    <article class="profile developer">
+      <div class="character-stage">
+        <img class="character" src={url('images/big-stew-cutout.png')} alt="BigStew's Minecraft character with a green face, black beard, and white chef outfit" width="832" height="1792" fetchpriority="high" />
+      </div>
+      <div class="profile-copy">
+        <p class="eyebrow">ZBK DEVELOPER</p>
+        <h2>BigStew</h2>
+        <p>Developing the gameplay systems and map-making tools behind Zombies Build Kit.</p>
+        <a class="profile-link" href={url('tutorials/')}>Explore the guide <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="connect-socials wrap" aria-labelledby="follow-heading">
+    <div class="section-heading"><h2 id="follow-heading">Follow the builds</h2><span>MiniStew's channels</span></div>
+    <div class="social-grid">
+      {socials.map(social => <a class="social-card" href={social.href} target="_blank" rel="noopener noreferrer">
+        <div class="social-top"><img src={url(`icons/${social.icon}.svg`)} alt="" width="30" height="30" /><span aria-hidden="true">↗</span></div>
+        <h3>{social.name}</h3><span class="social-handle">{social.handle}</span><p>{social.note}</p>
+      </a>)}
+    </div>
+  </section>
+
+  <section class="community-panel wrap" aria-labelledby="discord-heading">
+    <div class="discord-mark"><img src={url('icons/discord.svg')} alt="" width="46" height="46" /></div>
+    <div class="community-copy"><h2 id="discord-heading">Let's talk on Discord.</h2><p>Questions about ZBK, feedback on a map, or a build of your own to share? Find us here.</p></div>
+    <a class="button warm" href="https://discord.gg/CjsmDXtznD" target="_blank" rel="noopener noreferrer">Join Discord <span aria-hidden="true">↗</span></a>
+  </section>
+</Layout>
+<style>
+  .connect-intro{padding-block:75px 28px}
+  .connect-intro h1{font:500 clamp(48px,5.5vw,80px)/1.1 var(--body);letter-spacing:-.055em;text-transform:none;margin:22px 0}
+  .connect-intro>p:last-child{font-size:17px;line-height:1.7}
+  .profiles{display:grid;grid-template-columns:1fr 1fr;gap:70px;padding-bottom:75px}
+  .profile{display:grid;grid-template-columns:minmax(130px,.85fr) minmax(0,1fr);gap:24px;align-items:center;position:relative}
+  .character-stage{position:relative;isolation:isolate;min-width:0}
+  .character-stage::before{content:'';position:absolute;z-index:-1;inset:10% -20% 0;background:radial-gradient(ellipse,#d2b88518,transparent 67%);pointer-events:none}
+  .developer .character-stage::before{background:radial-gradient(ellipse,#c5d0a219,transparent 67%)}
+  .character-stage::after{content:'';position:absolute;z-index:-1;inset:auto 15% 5%;height:22px;background:radial-gradient(ellipse,#0009,transparent 70%)}
+  .character{width:100%;height:410px;object-fit:contain;filter:drop-shadow(12px 16px 12px #0005)}
+  .creator-logo{position:absolute;width:54px;height:54px;object-fit:contain;right:0;bottom:5%;transform:rotate(7deg)}
+  .profile-copy .eyebrow{font-size:9px;letter-spacing:.12em}
+  .profile-copy h2{font:500 clamp(26px,2.6vw,38px)/1.2 var(--body);text-transform:none;letter-spacing:-.04em;margin:14px 0 18px}
+  .profile-copy>p:not(.eyebrow){font-size:14px;line-height:1.8;max-width:290px}
+  .profile-link{display:flex;align-items:center;gap:10px;font-size:12px;margin-top:24px;color:var(--ink);width:fit-content;padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .profile-link:hover{border-color:var(--accent);color:var(--accent)}
+  .profile-link img,.social-top img,.discord-mark img{filter:invert(95%);flex-shrink:0}
+  .connect-socials{padding-bottom:65px}
+  .section-heading{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:30px;margin-bottom:25px;gap:20px}
+  .section-heading h2,.community-copy h2{font:500 clamp(23px,2.4vw,30px)/1.3 var(--body);text-transform:none;letter-spacing:-.035em}
+  .section-heading>span{font-size:12px;color:var(--muted)}
+  .social-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .social-card{padding:25px;border:1px solid var(--line);border-radius:12px;background:#ffffff03;transition:background .2s,border-color .2s}
+  .social-card:hover{background:#ffffff08;border-color:#d2b88570}
+  .social-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}.social-top>span{color:var(--muted);font-size:20px}
+  .social-card h3{font:500 20px var(--body);text-transform:none;letter-spacing:-.03em}.social-handle{display:block;font-size:12px;color:var(--accent);margin-top:7px}
+  .social-card p{font-size:12px;margin-top:22px}
+  .community-panel{display:flex;align-items:center;gap:28px;padding:32px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(115deg,#5865f212,transparent);margin-bottom:80px}
+  .discord-mark{width:76px;height:76px;display:grid;place-items:center;border-radius:18px;background:#5865f229;flex-shrink:0}
+  .community-copy{flex:1}.community-copy p{font-size:14px;max-width:540px;margin-top:12px}.community-panel .button{flex-shrink:0;border-radius:6px}
+  @media(max-width:1100px){.profiles{gap:32px}.profile{gap:15px;grid-template-columns:minmax(110px,.7fr) 1fr}.character{height:350px}.profile-link{font-size:11px}}
+  @media(max-width:760px){.connect-intro{padding-top:45px}.connect-intro>p:last-child{font-size:15px}.profiles{grid-template-columns:1fr;gap:15px;padding-bottom:45px}.profile{grid-template-columns:minmax(120px,.8fr) 1fr;gap:22px}.character{height:310px}.profile-copy h2{font-size:29px}.profile-copy>p:not(.eyebrow){font-size:13px}.profile-link{font-size:11px}.creator-logo{width:42px;height:42px}.section-heading{align-items:start;flex-direction:column;gap:8px}.social-grid{grid-template-columns:1fr}.social-card{padding:22px}.social-top{margin-bottom:20px}.social-card p{margin-top:15px}.connect-socials{padding-bottom:35px}.community-panel{flex-wrap:wrap;gap:20px;padding:24px;margin-bottom:50px}.discord-mark{width:54px;height:54px;border-radius:12px}.discord-mark img{width:32px}.community-copy{flex-basis:calc(100% - 74px)}.community-copy h2{font-size:22px}.community-copy p{font-size:13px}.community-panel .button{width:100%;justify-content:center}}
+</style>

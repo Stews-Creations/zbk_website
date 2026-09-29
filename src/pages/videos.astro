@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Video from '../components/Video.astro';
+import { videos } from '../data/site';
+---
+<Layout title="Videos & development logs | ZBK">
+  <section class="page-intro wrap"><p class="eyebrow">BEHIND THE BLOCKS</p><h1>WATCH IT<br /><em>COME ALIVE.</em></h1><p class="lede">From a first look inside the bunker to the latest work on the castle. Follow the worlds as they're built.</p></section>
+  <section class="wrap video-hub"><div class="filter-bar" role="group" aria-label="Filter videos"><button data-filter="all" aria-pressed="true">All content</button><button data-filter="youtube" aria-pressed="false">YouTube</button><button data-filter="shorts" aria-pressed="false">Shorts</button><button data-filter="tiktok" aria-pressed="false">TikTok</button><button data-filter="instagram" aria-pressed="false">Reels</button></div><div class="video-grid"><article data-category="youtube"><Video video={videos[1]} /><p class="eyebrow">NACHT DER UNTOTEN / MAP SHOWCASE</p><h2>THE ORIGINAL <em>OUTBREAK.</em></h2><p>Explore the Minecraft recreation in the full showcase.</p></article><article data-category="shorts"><Video video={videos[0]} /><p class="eyebrow">DER EISENDRACHE / DEVELOPMENT</p><h2>THE NEXT <em>CHAPTER.</em></h2><p>A look at the castle as the build takes shape.</p></article></div><div class="empty-content" id="empty-content" hidden><span class="eyebrow">MORE FROM THE BUILD</span><h2>STAY <em>TUNED.</em></h2><p>Videos for this platform haven't been added yet.<br />Catch the latest on YouTube and Shorts in the meantime.</p></div></section>
+</Layout>

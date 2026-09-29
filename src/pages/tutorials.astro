@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../data/site';
+
+const sections = [
+  ['getting-started', 'Start here'],
+  ['installation', 'Install the kit'],
+  ['first-map', 'Build your first map'],
+  ['concepts', 'How map setup works'],
+  ['gameplay', 'Start a game'],
+  ['hud', 'HUD and player setup'],
+  ['advanced', 'Keep building'],
+  ['troubleshooting', 'Troubleshooting'],
+];
+---
+
+<Layout
+  title="Tutorials | Zombies Build Kit"
+  description="Install Zombies Build Kit and learn the basics of building and running a custom Zombies map."
+  theme="build"
+>
+  <section class="page-intro wrap">
+    <p class="eyebrow">FIELD GUIDE / ZBK</p>
+    <h1>YOUR FIRST<br /><em>OUTBREAK.</em></h1>
+    <p class="lede">Get the kit running, place the markers that make a map playable, then bring your first round to life.</p>
+  </section>
+
+  <div class="docs-layout wrap">
+    <aside class="docs-nav" aria-label="Tutorial sections">
+      <p class="eyebrow">IN THIS GUIDE</p>
+      <nav>
+        {sections.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}
+      </nav>
+      <a class="docs-download" href={url('downloads/')}>Get the downloads <span aria-hidden="true">↗</span></a>
+    </aside>
+
+    <article class="guide">
+      <section id="getting-started">
+        <p class="eyebrow">01 / BEFORE YOU BEGIN</p>
+        <h2>Choose the right build</h2>
+        <p>Zombies Build Kit runs on <strong>Minecraft Java Edition 26.2</strong>. Use the matching Zombies Build Kit datapack and resource pack together.</p>
+        <p>You need a world where you can use commands and edit map markers. In multiplayer, make sure you have permission to use the Build Kit dialogs and commands.</p>
+        <div class="guide-callout"><strong>Two parts, one kit.</strong> The datapack runs the game and builder. The matching resource pack supplies the models, sounds, fonts, and HUD art.</div>
+      </section>
+
+      <section id="installation">
+        <p class="eyebrow">02 / INSTALL</p>
+        <h2>Install the datapack and resource pack</h2>
+        <ol>
+          <li>Open your Minecraft installation’s <code>saves</code> folder and choose the world you want to use.</li>
+          <li>Copy the extracted <code>zombies_build_kit_datapack</code> folder into that world’s <code>datapacks</code> folder. The folder should contain <code>pack.mcmeta</code> directly inside it.</li>
+          <li>Put the matching Zombies Build Kit resource-pack folder or ZIP in <code>.minecraft/resourcepacks</code>, then enable it under <strong>Options → Resource Packs</strong>.</li>
+          <li>Open the world and run <code>/reload</code>. Check <code>/datapack list</code> to confirm it is enabled.</li>
+        </ol>
+        <p>For a fresh world, create the world first so Minecraft makes its save folder, then install the datapack there. When using a prebuilt world, extract it into <code>.minecraft/saves</code> and install or enable the matching resource pack separately if the download notes require it.</p>
+        <div class="guide-callout"><strong>Keep the pair together.</strong> Install the Zombies Build Kit datapack and its matching resource pack for Minecraft 26.2.</div>
+      </section>
+
+      <section id="first-map">
+        <p class="eyebrow">03 / FIRST SESSION</p>
+        <h2>Open the builder</h2>
+        <p>With cheats or command permission enabled, open the Zombies hub:</p>
+        <div class="code-line"><code>/dialog open @s zombies:zombies</code><button class="copy-button" data-copy="/dialog open @s zombies:zombies">Copy</button></div>
+        <p>Choose <strong>Build Kit</strong> in the dialog to get the Build Manager stick. The Build Kit is available while a game is not active. You can also open it from the in-world Spawn Menu when a map has one.</p>
+        <ol>
+          <li>Open <strong>Build Kit → Map Elements</strong> and choose a marker type, such as Spawn.</li>
+          <li>Place the marker item where you want that feature in the world.</li>
+          <li>Hold the Build Manager to reveal nearby markers. Right-click near a marker with it to open that marker’s settings.</li>
+          <li>Set up player spawns, a worldspawn, a Spawn Menu, and at least one zombie spawner. Add doors and more rooms as your map grows.</li>
+        </ol>
+        <div class="flow-row" aria-label="Map building flow"><span>Choose marker</span><b aria-hidden="true">→</b><span>Place in world</span><b aria-hidden="true">→</b><span>Configure</span><b aria-hidden="true">→</b><span>Test</span></div>
+      </section>
+
+      <section id="concepts">
+        <p class="eyebrow">04 / MAP LOGIC</p>
+        <h2>Markers, links, and zones</h2>
+        <p><strong>Markers save your map setup.</strong> Runtime displays and interactions are rebuilt from the marker configuration when the datapack initializes. Configure the markers in the world instead of treating their visible models as the saved settings.</p>
+        <p><strong>Zones control where enemies spawn.</strong> Zone 0 is active when a game begins. Zones 1–32 remain locked until a door unlocks them. Give each zombie or dog spawner a zone, then add the zones that a door should unlock. A connecting door may need to unlock both neighboring zones so players can approach it from either side.</p>
+        <p><strong>Linked pieces need matching IDs.</strong> Some features use several markers as one system. For a jump pad, place Start, Peak, and End markers and give all three the same Link ID. Use the marker dialog’s used-ID option where available to avoid collisions.</p>
+        <div class="guide-callout"><strong>Build in a loop.</strong> Place a small set of markers, configure them, start a test game, then adjust. Zone Highlight in Build Kit → Zombie Control helps check which markers belong to a zone.</div>
+      </section>
+
+      <section id="gameplay">
+        <p class="eyebrow">05 / PLAYTEST</p>
+        <h2>Run a round</h2>
+        <p>Before starting, check that player spawn markers exist, the world has a sensible return point, and at least one zombie spawner belongs to active Zone 0. Use the in-world Spawn Menu or the Zombies dialog to start the game. Build Kit editing is intended for outside an active game.</p>
+        <p>Walk the route a player will take. Try opening each door and confirm the expected zones activate. Check that spawners are reachable, players have room to move, and the game can be stopped and started again cleanly.</p>
+      </section>
+
+      <section id="hud">
+        <p class="eyebrow">06 / PLAYER PRESENTATION</p>
+        <h2>Check the HUD and resource pack</h2>
+        <p>If the game runs but custom models, weapon art, sounds, fonts, or HUD icons are missing, enable the matching Zombies Build Kit resource pack. After changing local resource-pack assets, press <kbd>F3</kbd>+<kbd>T</kbd> to reload them.</p>
+        <p>For Vivecraft, follow the dedicated setup instructions for the release you installed. The VR overlay and companion mod are optional; they are not required for the standard Java setup.</p>
+      </section>
+
+      <section id="advanced">
+        <p class="eyebrow">07 / NEXT BUILD</p>
+        <h2>Make the map your own</h2>
+        <p>Add doors, barriers, wall guns, perks, power, traps, jump pads, and Mystery Box locations as your layout needs them. Give each feature a clear purpose and test its settings in the world. Map / Sound ID selects the map-specific sound set; custom sound packs use their documented ID and namespace rules.</p>
+        <p>Browse the <a href={url('#build')}>Build Kit guide</a> for builder details, or return to <a href={url('downloads/')}>Downloads</a> to choose a package.</p>
+      </section>
+
+      <section id="troubleshooting">
+        <p class="eyebrow">08 / QUICK FIXES</p>
+        <h2>When something does not load</h2>
+        <details>
+          <summary>The datapack does not appear in <code>/datapack list</code>.</summary>
+          <p>Check that the extracted datapack folder is directly inside this world’s <code>datapacks</code> directory and that <code>pack.mcmeta</code> is directly inside the datapack folder. Run <code>/reload</code> again.</p>
+        </details>
+        <details>
+          <summary>The game runs, but custom art or sounds are missing.</summary>
+          <p>Enable the resource pack that matches the installed datapack and the Minecraft version named in its release notes. Reload resources with <kbd>F3</kbd>+<kbd>T</kbd> after local asset edits.</p>
+        </details>
+        <details>
+          <summary>I cannot find or configure a marker.</summary>
+          <p>Use the Build Manager outside an active game. Hold it to reveal markers within about 15 blocks, then right-click within about 5 blocks of the marker to open its settings.</p>
+        </details>
+        <details>
+          <summary>No enemies appear in a room.</summary>
+          <p>Check that the zombie or dog spawner has the intended zone and that the zone is active. Zone 0 starts active; other zones need to be unlocked by a door.</p>
+        </details>
+      </section>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .docs-layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: clamp(2rem, 6vw, 6rem); padding-bottom: 7rem; }
+  .docs-nav { align-self: start; position: sticky; top: 2rem; display: grid; gap: 1rem; }
+  .docs-nav nav { display: grid; gap: .7rem; }
+  .docs-nav a, .guide a { color: var(--accent, #e0a748); text-underline-offset: .2em; }
+  .docs-nav nav a { color: inherit; text-decoration: none; opacity: .72; }
+  .docs-nav nav a:hover { opacity: 1; }
+  .docs-download { margin-top: .7rem; font-weight: 700; }
+  .guide { min-width: 0; max-width: 52rem; }
+  .guide section { scroll-margin-top: 2rem; padding: 0 0 3rem; margin: 0 0 3rem; border-bottom: 1px solid rgb(255 255 255 / 12%); }
+  .guide h2 { margin: .35rem 0 1rem; font-size: clamp(1.8rem, 4vw, 2.7rem); line-height: 1.08; }
+  .guide p, .guide li { line-height: 1.75; }
+  .guide ol { padding-left: 1.35rem; }
+  .guide li { padding-left: .25rem; margin: .45rem 0; }
+  .guide code { padding: .12em .35em; border-radius: .25rem; background: rgb(255 255 255 / 9%); font-size: .92em; }
+  .guide .code-line code { background: none; padding: 0; }
+  .guide-callout { margin: 1.4rem 0; padding: 1rem 1.2rem; border-left: 3px solid var(--accent, #e0a748); background: rgb(255 255 255 / 5%); line-height: 1.65; }
+  .code-line { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .85rem 1rem; margin: 1rem 0; border: 1px solid rgb(255 255 255 / 15%); border-radius: .4rem; background: rgb(0 0 0 / 30%); }
+  .copy-button { cursor: pointer; padding: .4rem .7rem; color: inherit; border: 1px solid rgb(255 255 255 / 25%); border-radius: .25rem; background: transparent; }
+  .flow-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .7rem; margin: 1.5rem 0; }
+  .flow-row span { padding: .65rem .85rem; border: 1px solid rgb(255 255 255 / 17%); border-radius: 2rem; }
+  .flow-row b { color: var(--accent, #e0a748); }
+  .guide details { padding: 1rem 0; border-top: 1px solid rgb(255 255 255 / 12%); }
+  .guide summary { cursor: pointer; font-weight: 700; }
+  .guide details p { margin-bottom: 0; }
+  @media (max-width: 760px) {
+    .docs-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .docs-nav { position: static; grid-template-columns: minmax(0, 1fr); }
+    .docs-nav nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

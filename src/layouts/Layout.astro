@@ -1,0 +1,52 @@
+---
+import '@fontsource/oswald/500.css';
+import '@fontsource/oswald/600.css';
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/space-grotesk/600.css';
+import '../styles/global.css';
+import { url } from '../data/site';
+interface Props { title?: string; description?: string; theme?: string; }
+const { title = 'ZBK | Play ours. Build yours.', description = 'Call of Duty Zombies, rebuilt in Minecraft Java Edition. Explore Der Eisendrache and Nacht der Untoten, watch the builds, and create your own with Zombies Build Kit.', theme = 'de' } = Astro.props;
+const nav = [['Explore', '#der-eisendrache'], ['Guide', 'tutorials/'], ['Connect', 'connect/']];
+const current = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#10191d" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <title>{title}</title>
+    <noscript><style>@media(max-width:760px){.site-header{height:auto;flex-wrap:wrap;padding-block:20px;gap:20px}.site-header nav{display:flex;position:static;padding:0;flex-basis:100%}.menu-toggle{display:none}}#motion-toggle,.filter-bar,.copy-button{display:none}</style></noscript>
+  </head>
+  <body data-theme={theme}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href={url()} aria-label="ZBK home"><span class="brand-mark">ZBK<span>⌜</span></span><span class="brand-name">ZOMBIES<br />BUILD KIT</span></a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">☰</span></button>
+      <nav id="navigation" aria-label="Main navigation">
+        {nav.map(([label, path]) => <a href={url(path)} aria-current={(path.startsWith('#') ? current === url() : current.startsWith(url(path))) ? 'page' : undefined}>{label}</a>)}
+        <a class="nav-download" href={url('downloads/')} aria-current={current.startsWith(url('downloads/')) ? 'page' : undefined}>Download <span aria-hidden="true">↓</span></a>
+      </nav>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer wrap">
+      <div class="footer-main"><a href={url()} class="footer-logo">ZBK</a><p>PLAY OURS.<br />BUILD YOURS.</p><div><a href={url('#der-eisendrache')}>Explore the maps ↗</a><a href={url('tutorials/')}>Start building ↗</a><button id="motion-toggle" aria-pressed="false">Motion: on</button></div></div>
+      <div class="footer-bottom"><span>ZOMBIES BUILD KIT · MINECRAFT JAVA EDITION</span><p>An unofficial fan project. Not affiliated with or endorsed by Activision, Treyarch, Mojang, or Microsoft. Original map concepts belong to their respective owners.</p></div>
+    </footer>
+    <dialog id="video-dialog" aria-labelledby="video-title">
+      <div class="dialog-toolbar"><h2 id="video-title">Watch the build</h2><button class="dialog-close" aria-label="Close video">Close ✕</button></div>
+      <div id="video-player"></div>
+      <p class="dialog-note">Video not playing? <a id="video-fallback" href="https://www.youtube.com/">Watch on YouTube ↗</a></p>
+    </dialog>
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

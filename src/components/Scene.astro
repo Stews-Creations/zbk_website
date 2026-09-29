@@ -1,0 +1,6 @@
+---
+import { url } from '../data/site';
+interface Props { name: string; alt: string; class?: string; priority?: boolean; sizes?: string; }
+const { name, alt, class: className = '', priority = false, sizes = '100vw' } = Astro.props;
+---
+<img class={className} src={url(`images/${name}-1600.webp`)} srcset={`${url(`images/${name}-800.webp`)} 800w, ${url(`images/${name}-1600.webp`)} 1600w, ${url(`images/${name}-2400.webp`)} 2400w`} sizes={sizes} alt={alt} width="2560" height="1369" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+*.log
+qa/
+
+# Local development instructions and settings
+AGENTS.md
+.codex/

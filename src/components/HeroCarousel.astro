@@ -1,0 +1,78 @@
+---
+import Scene from './Scene.astro';
+import ModelViewer from './ModelViewer.astro';
+import { url, videos } from '../data/site';
+---
+<section class="hero" data-hero-carousel data-slide="de" aria-roledescription="carousel" aria-label="Explore ZBK worlds">
+  <div class="hero-slide" data-hero-slide="de" role="group" aria-roledescription="slide" aria-label="1 of 3: Der Eisendrache">
+    <div class="hero-environment" aria-hidden="true"><Scene name="de-castle" alt="" priority /><div class="scene-shade"></div></div>
+    <ModelViewer map="de" hero />
+  </div>
+  <div class="hero-slide" data-hero-slide="nacht" role="group" aria-roledescription="slide" aria-label="2 of 3: Nacht der Untoten" hidden>
+    <div class="hero-environment" aria-hidden="true"><Scene name="nacht-exterior" alt="" /><div class="scene-shade"></div></div>
+    <ModelViewer map="nacht" hero />
+  </div>
+  <div class="hero-slide" data-hero-slide="build" role="group" aria-roledescription="slide" aria-label="3 of 3: Build your own" hidden>
+    <div class="hero-environment" aria-hidden="true"><Scene name="nacht-interior" alt="" /><div class="scene-shade"></div></div>
+  </div>
+  <div class="hero-grid wrap">
+    <div class="hero-copy">
+      <h1><span data-hero-line-one>DER</span><br /><span data-hero-line-two>EISENDRACHE</span><br /><em data-hero-accent>IN MINECRAFT</em></h1>
+      <div class="actions">
+        <a class="button" data-hero-link href={url('#der-eisendrache')}>Explore</a>
+        <a class="text-link" data-hero-video="de" data-map="de" href={videos[0].href} data-video={videos[0].id} data-vertical="true" data-title={videos[0].title}><span aria-hidden="true">▶</span> Watch the latest</a>
+        <a class="text-link" data-hero-video="nacht" data-map="nacht" href={videos[1].href} data-video={videos[1].id} data-start={videos[1].start} data-title={videos[1].title} hidden><span aria-hidden="true">▶</span> Watch the build</a>
+      </div>
+      <div class="hero-meta"><span class="mini-block" aria-hidden="true">▣</span> MINECRAFT JAVA <span class="dot-separator">/</span> 26.2 <span class="dot-separator">/</span> BUILT WITH ZBK</div>
+    </div>
+  </div>
+  <button class="hero-arrow hero-arrow-prev" data-hero-prev aria-label="Previous: Build your own" hidden><span aria-hidden="true">‹</span></button>
+  <button class="hero-arrow hero-arrow-next" data-hero-next aria-label="Next: Nacht der Untoten" hidden><span aria-hidden="true">›</span></button>
+  <div class="hero-bottom wrap">
+    <a href="#discover" class="scroll-cue"><span>↓</span> SCROLL TO EXPLORE</a>
+    <div class="hero-selectors" role="group" aria-label="Choose a featured slide" hidden>
+      <button type="button" data-hero-select="0" aria-pressed="true">Der Eisendrache</button>
+      <button type="button" data-hero-select="1" aria-pressed="false">Nacht</button>
+      <button type="button" data-hero-select="2" aria-pressed="false">Build Your Own</button>
+    </div>
+  </div>
+  <div class="hero-stamp" data-hero-stamp>IN DEVELOPMENT</div>
+  <span class="sr-only" data-hero-announcement aria-live="polite" aria-atomic="true"></span>
+</section>
+<script>
+  import { url } from '../data/site';
+  const hero = document.querySelector<HTMLElement>('[data-hero-carousel]')!;
+  const slides = [
+    { id: 'de', name: 'Der Eisendrache', first: 'DER', second: 'EISENDRACHE', accent: 'IN MINECRAFT', href: '#der-eisendrache', action: 'Explore', stamp: 'IN DEVELOPMENT' },
+    { id: 'nacht', name: 'Nacht der Untoten', first: 'NACHT', second: 'DER UNTOTEN', accent: 'IN MINECRAFT', href: '#nacht', action: 'Explore', stamp: 'THE ORIGINAL OUTBREAK' },
+    { id: 'build', name: 'Build your own', first: 'BUILD', second: 'YOUR OWN', accent: 'WITH ZBK', href: '#build', action: 'Explore', stamp: 'YOUR WORLD. YOUR RULES.' },
+  ];
+  const previous = hero.querySelector<HTMLButtonElement>('[data-hero-prev]')!;
+  const next = hero.querySelector<HTMLButtonElement>('[data-hero-next]')!;
+  let current = 0;
+  const show = (index: number) => {
+    current = (index + slides.length) % slides.length;
+    const slide = slides[current];
+    hero.dataset.slide = slide.id;
+    hero.querySelectorAll<HTMLElement>('[data-hero-slide]').forEach(panel => {
+      panel.hidden = panel.dataset.heroSlide !== slide.id;
+      if (!panel.hidden) panel.querySelector('.model-viewer')?.dispatchEvent(new Event('model:activate'));
+    });
+    hero.querySelector('[data-hero-line-one]')!.textContent = slide.first;
+    hero.querySelector('[data-hero-line-two]')!.textContent = slide.second;
+    hero.querySelector('[data-hero-accent]')!.textContent = slide.accent;
+    const link = hero.querySelector<HTMLAnchorElement>('[data-hero-link]')!;
+    link.href = url(slide.href); link.textContent = slide.action;
+    hero.querySelectorAll<HTMLAnchorElement>('[data-hero-video]').forEach(video => { video.hidden = video.dataset.heroVideo !== slide.id; });
+    hero.querySelector('[data-hero-stamp]')!.textContent = slide.stamp;
+    hero.querySelectorAll<HTMLButtonElement>('[data-hero-select]').forEach(button => { button.setAttribute('aria-pressed', String(Number(button.dataset.heroSelect) === current)); });
+    previous.setAttribute('aria-label', `Previous: ${slides[(current + slides.length - 1) % slides.length].name}`);
+    next.setAttribute('aria-label', `Next: ${slides[(current + 1) % slides.length].name}`);
+    hero.querySelector('[data-hero-announcement]')!.textContent = `${slide.name}, slide ${current + 1} of 3`;
+  };
+  previous.hidden = false; next.hidden = false;
+  hero.querySelector<HTMLElement>('.hero-selectors')!.hidden = false;
+  hero.querySelectorAll<HTMLButtonElement>('[data-hero-select]').forEach(button => button.addEventListener('click', () => show(Number(button.dataset.heroSelect))));
+  previous.addEventListener('click', () => show(current - 1));
+  next.addEventListener('click', () => show(current + 1));
+</script>

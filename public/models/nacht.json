@@ -1,0 +1,33 @@
+{
+  "model": "nacht",
+  "inputVertices": 294308,
+  "inputFaces": 283042,
+  "retainedFaces": 82275,
+  "excludedFaces": 0,
+  "hiddenMaterialFaces": 376,
+  "triangles": 164550,
+  "bytes": 2114552,
+  "crop": {
+    "hiddenMaterials": [
+      "magenta_stained_glass",
+      "magenta_stained_glass_pane_top",
+      "purple_stained_glass",
+      "purple_stained_glass_pane_top"
+    ],
+    "min": [
+      -62,
+      17,
+      -47
+    ],
+    "max": [
+      23,
+      55,
+      43
+    ],
+    "description": "Bunker and immediate defenses; omit the separate lower eastern area, deep base and peripheral forest."
+  },
+  "atlasSize": 1024,
+  "materials": 220,
+  "drawCalls": 1,
+  "sourcePreserved": true
+}

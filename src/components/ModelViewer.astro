@@ -1,0 +1,33 @@
+---
+import Scene from './Scene.astro';
+import { url } from '../data/site';
+interface Props { map: 'de' | 'nacht'; hero?: boolean; }
+const { map, hero = false } = Astro.props;
+const name = map === 'de' ? 'Der Eisendrache' : 'Nacht der Untoten';
+---
+<figure class:list={['model-viewer', { 'hero-model': hero }]} data-model={url(`models/${map}.glb`)} data-map={map} aria-label={`Interactive 3D ${name} map`}>
+  {!hero && <div class="model-poster"><Scene name={map === 'de' ? 'de-castle' : 'nacht-exterior'} alt={`${name} map preview`} /></div>}
+  <div class="model-canvas" tabindex="-1" role="img" aria-label={`3D model of ${name}. Drag or use arrow keys to rotate.`}></div>
+  <div class="model-launch"><span class="model-status" aria-live="polite">PREPARING THE MAP</span></div>
+</figure>
+<script>
+  document.querySelectorAll<HTMLElement>('.model-viewer').forEach(viewer => {
+    const status = viewer.querySelector<HTMLElement>('.model-status')!;
+    let started = false;
+    const load = async () => {
+      if (started) return;
+      started = true;
+      try {
+        const { mountModel } = await import('../scripts/model-runtime');
+        await mountModel(viewer, (percent: number) => { status.textContent = percent > 0 ? `${percent}% · PREPARING THE MAP` : 'PREPARING THE MAP'; });
+      } catch (error) {
+        console.warn('The 3D map could not load. The screenshot remains available.', error);
+        status.textContent = '3D unavailable on this device. Explore the screenshots below.';
+      }
+    };
+    viewer.addEventListener('model:activate', () => { void load(); });
+    // Load visible models on every device; hidden carousel slides wait until selected.
+    const observer = new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) { observer.disconnect(); void load(); } });
+    observer.observe(viewer);
+  });
+</script>
