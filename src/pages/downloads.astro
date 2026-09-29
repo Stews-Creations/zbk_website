@@ -1,13 +1,94 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Scene from '../components/Scene.astro';
-import DownloadLink from '../components/DownloadLink.astro';
 import { url } from '../data/site';
 import { releases } from '../data/releases';
 ---
 <Layout title="Downloads & installation | ZBK" theme="nacht">
-  <section class="page-intro wrap"><p class="eyebrow">YOUR NEXT ROUND STARTS HERE</p><h1>LOAD IN.<br /><em>HOLD OUT.</em></h1><p class="lede">Playable worlds and the tools to build your own.<br />For Minecraft Java Edition {releases.minecraft}.</p></section>
-  <section class="downloads-section wrap" id="nacht"><div class="section-heading"><h2>PLAYABLE <em>MAPS.</em></h2><span class="eyebrow">WORLD + RESOURCE PACK</span></div><article class="download-panel"><Scene name="nacht-exterior" alt="Nacht der Untoten bunker" /><div><p class="eyebrow">NACHT DER UNTOTEN</p><h3>BACK TO THE BUNKER.</h3><p>The world and resource pack are separate files. Install both for the complete ZBK experience.</p><dl class="requirements"><div><dt>Edition</dt><dd>Java</dd></div><div><dt>Minecraft</dt><dd>{releases.minecraft}</dd></div><div><dt>Release</dt><dd>{releases.version || 'Details coming soon'}</dd></div><div><dt>Required</dt><dd>Matching resource pack</dd></div></dl><div class="actions"><DownloadLink href={releases.nachtWorld} label="Nacht world" /><DownloadLink href={releases.resourcePack} label="Resource pack" /></div><a class="text-link" href="#install">How to install ↓</a></div></article><div class="upcoming-release" id="de"><span class="status-tag">IN DEVELOPMENT</span><strong>DER EISENDRACHE</strong><a href={url('#der-eisendrache')}>Follow the build ↗</a></div></section>
-  <section class="downloads-section wrap" id="kit"><div class="section-heading"><h2>BUILD YOUR <em>OWN.</em></h2><span class="eyebrow">ZOMBIES BUILD KIT</span></div><div class="kit-downloads"><article><span class="eyebrow">START WITH A WORLD</span><h3>ZBK STARTER WORLD</h3><p>A starting point for your own Zombies map. Pair it with the matching resource pack.</p><DownloadLink href={releases.starterWorld} label="Starter world" /></article><article><span class="eyebrow">BRING YOUR OWN WORLD</span><h3>ZBK DATAPACK</h3><p>Add the kit to your own build. Install the datapack in the world and enable its resource pack.</p><DownloadLink href={releases.datapack} label="ZBK datapack" /></article><article><span class="eyebrow">THE LOOK. THE SOUND.</span><h3>ZBK RESOURCE PACK</h3><p>The models, textures, sounds, and HUD that bring it all together. Required for maps and the kit.</p><DownloadLink href={releases.resourcePack} label="Resource pack" /></article></div></section>
-  <section class="installation wrap" id="install"><p class="eyebrow">DOWNLOAD TO FIRST ROUND</p><h2>THREE STEPS.<br /><em>THEN SURVIVE.</em></h2><ol class="install-steps"><li><span>01</span><div><h3>INSTALL THE WORLD</h3><p>Extract the world archive. Move the folder containing <code>level.dat</code> into your Minecraft <code>saves</code> folder. Make sure it isn't nested inside an extra folder.</p></div></li><li><span>02</span><div><h3>ENABLE THE RESOURCE PACK</h3><p>In Minecraft, open Options → Resource Packs → Open Pack Folder. Copy the matching resource-pack ZIP there, then enable it in the game.</p></div></li><li><span>03</span><div><h3>ENTER THE OUTBREAK</h3><p>Launch Minecraft Java {releases.minecraft}, open the world from Singleplayer, and use the map's spawn menu to start. Keep a backup before updating a world.</p></div></li></ol><a class="text-link" href={url('tutorials/#troubleshooting')}>Need a hand? Open the field guide ↗</a></section>
+  <div class="downloads-backdrop">
+  <section class="downloads-section wrap" id="nacht">
+    <div class="section-heading"><h1>PLAYABLE <em>MAPS</em></h1></div>
+    <article class="download-panel">
+      <Scene name="nacht-exterior" alt="Nacht der Untoten bunker" />
+      <div>
+        <h3>NACHT DER UNTOTEN</h3>
+        <p>Download the complete world with the required resource pack already included.</p>
+        <dl class="requirements">
+          <div><dt>Edition</dt><dd>Java</dd></div>
+          <div><dt>Minecraft</dt><dd>{releases.minecraft}</dd></div>
+          <div><dt>Release</dt><dd>See GitHub releases</dd></div>
+          <div><dt>Resource pack</dt><dd>Included</dd></div>
+        </dl>
+        <div class="actions"><a class="button" href={releases.maps} target="_blank" rel="noopener noreferrer">View map releases ↗</a></div>
+        <a class="text-link" href="#install">Installation guide ↓</a>
+      </div>
+    </article>
+    <div class="upcoming-release" id="de">
+      <span class="status-tag">IN DEVELOPMENT</span>
+      <div><h3>DER EISENDRACHE</h3><p>Follow the build as the map comes together.</p></div>
+      <a href={url('#der-eisendrache')}>Follow the build ↗</a>
+    </div>
+  </section>
+
+  <section class="downloads-section wrap" id="kit">
+    <div class="section-heading"><h2>BUILD YOUR <em>OWN</em></h2></div>
+    <div class="kit-downloads">
+      <article>
+        <h3>ZBK STARTER WORLD</h3>
+        <p>The easiest way to start building with ZBK.</p>
+        <p>Includes the world setup, datapack, and bundled resource pack so you can start creating immediately.</p>
+        <a class="button" href={releases.maps} target="_blank" rel="noopener noreferrer">View world releases ↗</a>
+      </article>
+      <article>
+        <h3>ZBK DATAPACK</h3>
+        <p>Add ZBK systems and structures to your own Minecraft world.</p>
+        <p>Structures are included in the datapack. Pair it with the ZBK resource pack.</p>
+        <a class="button" href={releases.datapack} target="_blank" rel="noopener noreferrer">View datapack releases ↗</a>
+      </article>
+      <article>
+        <h3>ZBK RESOURCE PACK</h3>
+        <p>The models, textures, sounds, and HUD used by ZBK.</p>
+        <p>Use it alongside the standalone datapack. Playable map downloads already include the correct resource pack.</p>
+        <a class="button" href={releases.resourcePack} target="_blank" rel="noopener noreferrer">View resource pack releases ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="installation wrap" id="install">
+    <h2>INSTALLING <em>A MAP</em></h2>
+    <ol class="install-steps">
+      <li><span>01</span><div><h3>DOWNLOAD</h3><p>Choose a map release and download the world archive.</p></div></li>
+      <li><span>02</span><div><h3>INSTALL</h3><p>Extract the world folder into your Minecraft <code>saves</code> folder. Keep all bundled files together.</p></div></li>
+      <li><span>03</span><div><h3>PLAY</h3><p>Launch Minecraft Java {releases.minecraft}, open the world, and start the map from its spawn menu.</p></div></li>
+    </ol>
+    <a class="text-link" href={url('tutorials/#installation')}>Need help? Open the installation guide ↗</a>
+  </section>
+  </div>
 </Layout>
+
+<style>
+  .downloads-backdrop {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    background: radial-gradient(ellipse at 95% 48%, #55787824, transparent 48%),
+      radial-gradient(ellipse at 0% 75%, #a4874b18, transparent 42%), #101719;
+  }
+  .downloads-backdrop::before {
+    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background-image: linear-gradient(#bedfe207 1px, transparent 1px), linear-gradient(90deg, #bedfe207 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(transparent, #000 30%, #000 80%, transparent);
+  }
+  #nacht { padding-top: clamp(40px, 6vw, 80px); }
+  .section-heading h1 { font-size: clamp(40px, 4.8vw, 76px); }
+  .download-panel { background: linear-gradient(130deg, #293431ed, #151e20f5); border-color: #d2b88540; box-shadow: 0 24px 70px #0005; }
+  .upcoming-release { background: linear-gradient(110deg, #d2b88513, #192426c9); }
+  .upcoming-release p { margin-top: 8px; font-size: 14px; }
+  .kit-downloads { background: linear-gradient(140deg, #253234eb, #141d20f5); box-shadow: 0 20px 65px #0003; border-top: 1px solid #d2b88555; }
+  .kit-downloads article { background: transparent; }
+  .installation { position: relative; }
+  @media (max-width: 760px) {
+    .downloads-backdrop::before { background-size: 48px 48px; }
+  }
+</style>

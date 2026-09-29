@@ -5,7 +5,7 @@ interface Props { video: typeof videos[number]; compact?: boolean; }
 const { video, compact = false } = Astro.props;
 ---
 <div class:list={['video-feature', { vertical: video.vertical, compact }]}>
-  <a class="video-poster" href={video.href} data-video={video.id} data-map={video.map} data-start={video.start} data-title={video.title} data-vertical={String(video.vertical)} aria-label={`Watch ${video.title}`}>
+  <a class="video-poster" href={video.href} target="_blank" rel="noopener noreferrer" data-video={video.id} data-map={video.map} data-start={video.start} data-title={video.title} data-vertical={String(video.vertical)} aria-label={`Watch ${video.title}`}>
     <Scene name={video.image} alt={video.vertical ? 'Snow-covered courtyard of the Minecraft Der Eisendrache recreation' : 'The ruined Nacht der Untoten bunker in Minecraft'} sizes={video.vertical ? '(max-width: 700px) 80vw, 400px' : '(max-width: 700px) 100vw, 800px'} />
     <span class="video-topline"><span>{video.label}</span><span>{video.vertical ? '9:16' : '16:9'}</span></span>
     <span class="play-icon" aria-hidden="true">▶</span>

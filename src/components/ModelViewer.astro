@@ -22,7 +22,7 @@ const name = map === 'de' ? 'Der Eisendrache' : 'Nacht der Untoten';
         await mountModel(viewer, (percent: number) => { status.textContent = percent > 0 ? `${percent}% · PREPARING THE MAP` : 'PREPARING THE MAP'; });
       } catch (error) {
         console.warn('The 3D map could not load. The screenshot remains available.', error);
-        status.textContent = '3D unavailable on this device. Explore the screenshots below.';
+        status.textContent = 'The 3D map could not load. Reload to try again, or explore the screenshots below.';
       }
     };
     viewer.addEventListener('model:activate', () => { void load(); });

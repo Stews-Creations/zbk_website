@@ -37,13 +37,13 @@ const current = Astro.url.pathname;
     </header>
     <main id="main"><slot /></main>
     <footer class="site-footer wrap">
-      <div class="footer-main"><a href={url()} class="footer-logo">ZBK</a><p>PLAY OURS.<br />BUILD YOURS.</p><div><a href={url('#der-eisendrache')}>Explore the maps ↗</a><a href={url('tutorials/')}>Start building ↗</a><button id="motion-toggle" aria-pressed="false">Motion: on</button></div></div>
+      <div class="footer-main"><a href={url()} class="footer-logo">ZBK</a><p>PLAY OURS.<br />BUILD YOURS.</p><div><a href={url('#der-eisendrache')}>Explore our maps ↗</a><a href={url('tutorials/')}>Build your own ↗</a><button id="motion-toggle" aria-pressed="false">Motion: on</button></div></div>
       <div class="footer-bottom"><span>ZOMBIES BUILD KIT · MINECRAFT JAVA EDITION</span><p>An unofficial fan project. Not affiliated with or endorsed by Activision, Treyarch, Mojang, or Microsoft. Original map concepts belong to their respective owners.</p></div>
     </footer>
     <dialog id="video-dialog" aria-labelledby="video-title">
       <div class="dialog-toolbar"><h2 id="video-title">Watch the build</h2><button class="dialog-close" aria-label="Close video">Close ✕</button></div>
       <div id="video-player"></div>
-      <p class="dialog-note">Video not playing? <a id="video-fallback" href="https://www.youtube.com/">Watch on YouTube ↗</a></p>
+      <p class="dialog-note">Video not playing? <a id="video-fallback" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></p>
     </dialog>
     <script>
       import '../scripts/site';

@@ -23,7 +23,7 @@ const socials = [
       <div class="profile-copy">
         <p class="eyebrow">MAP BUILDER &amp; CREATOR</p>
         <h2>MiniStew</h2>
-        <p>Recreating the maps, one block at a time. Sharing the process from early layouts to the finished build.</p>
+        <p><strong>Minecraft builder with a love for Zombies.</strong> Recreating iconic maps and sharing how they come together.</p>
         <a class="profile-link" href="https://www.youtube.com/@MiniStew" target="_blank" rel="noopener noreferrer"><img src={url('icons/youtube.svg')} alt="" width="22" height="22" />Watch on YouTube <span aria-hidden="true">↗</span></a>
       </div>
     </article>
@@ -40,7 +40,7 @@ const socials = [
     </article>
   </section>
 
-  <section class="connect-socials wrap" aria-labelledby="follow-heading">
+  <section class="connect-socials wrap" id="socials" aria-labelledby="follow-heading">
     <div class="section-heading"><h2 id="follow-heading">Follow the builds</h2><span>MiniStew's channels</span></div>
     <div class="social-grid">
       {socials.map(social => <a class="social-card" href={social.href} target="_blank" rel="noopener noreferrer">

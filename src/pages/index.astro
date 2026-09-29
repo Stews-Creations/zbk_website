@@ -4,10 +4,11 @@ import Scene from '../components/Scene.astro';
 import Video from '../components/Video.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
 import { url, videos } from '../data/site';
+import { releases } from '../data/releases';
 const deGallery = [
   { image: 'de-courtyard', title: 'The courtyard', alt: 'Snow-covered castle courtyard with a blue beacon and wooden walkways' },
   { image: 'de-undercroft', title: 'The undercroft', alt: 'Candlelit chamber beneath Der Eisendrache castle' },
-  { image: 'de-sign', title: 'Der EisenBlock', alt: 'Der EisenBlock lettering in front of the Minecraft castle' },
+  { image: 'de-castle', title: 'The castle', alt: 'Wide view of the snow-covered Der Eisendrache castle in Minecraft' },
 ];
 const nachtGallery = [
   { image: 'nacht-exterior', title: 'The bunker', alt: 'Nacht der Untoten surrounded by forest and overgrown defenses' },
@@ -23,27 +24,25 @@ const systems = [
 ---
 <Layout>
   <HeroCarousel />
-  <div id="discover" class="collection-bar wrap"><span>MINECRAFT JAVA 26.2</span><nav aria-label="Explore sections"><a href="#der-eisendrache">Der Eisendrache</a><a href="#nacht">Nacht</a><a href="#build">Build your own</a></nav></div>
 
   <section class="world-section wrap" id="der-eisendrache" aria-labelledby="de-heading">
-    <header class="world-heading" data-reveal><div><p class="eyebrow">01 / DER EISENDRACHE</p><h2 id="de-heading">The castle,<br /><em>recreated.</em></h2></div><div><span class="status-tag">IN DEVELOPMENT</span><p>Snow-covered towers, the courtyard, and the rooms beneath it. Explore our latest Minecraft recreation.</p></div></header>
-    <figure class="world-image" data-reveal><Scene name="de-castle" alt="Wide view of the snow-covered Der Eisendrache castle in Minecraft" sizes="(max-width: 760px) 100vw, 1440px" /><figcaption>Der Eisendrache / Minecraft recreation</figcaption></figure>
+    <header class="world-heading" data-reveal><div><p class="eyebrow">01 / DER EISENDRACHE</p><h2 id="de-heading">RECREATING <em>DER EISENDRACHE.</em></h2></div><div><span class="status-tag">IN DEVELOPMENT</span><p>Our Minecraft recreation of the Black Ops III Zombies map, complete with map-accurate weapons, Easter eggs, gameplay mechanics, and more.</p></div></header>
+    <figure class="world-image" data-reveal><Scene name="de-sign" alt="Der EisenBlock lettering in front of the Minecraft castle" sizes="(max-width: 760px) 100vw, 1440px" /><figcaption>Der EisenBlock / Minecraft recreation</figcaption></figure>
     <div class="image-grid">{deGallery.map((item, index) => <figure data-reveal style={`--reveal-delay:${index * 70}ms`}><div class="image-crop"><Scene name={item.image} alt={item.alt} /></div><figcaption><span>0{index + 1}</span>{item.title}</figcaption></figure>)}</div>
-    <div class="latest-feature" data-reveal><div><p class="eyebrow">BUILD UPDATES</p><h3>Watch the latest.</h3><p>A closer look at the work in progress, from MiniStew's latest YouTube Short.</p><a class="text-link" href={url('videos/')}>All videos <span aria-hidden="true">↗</span></a></div><Video video={videos[0]} /></div>
-    <div class="section-cta" data-reveal><div><h3>Der Eisendrache downloads</h3><p>The map is in development. Check here for release availability.</p></div><a class="button" href={url('downloads/#de')}>Downloads <span aria-hidden="true">↓</span></a></div>
+    <div class="latest-feature" data-reveal><div><p class="eyebrow">BUILD UPDATES</p><h3>Watch the latest.</h3><p>A closer look at the work in progress, from MiniStew's latest YouTube Short.</p><a class="text-link" href={url('connect/#socials')}>More videos & updates <span aria-hidden="true">↗</span></a></div><Video video={videos[0]} /></div>
   </section>
 
   <section class="world-section nacht-section wrap" id="nacht" aria-labelledby="nacht-heading">
-    <header class="world-heading" data-reveal><div><p class="eyebrow">02 / NACHT DER UNTOTEN</p><h2 id="nacht-heading">Back to<br /><em>the bunker.</em></h2></div><p>The original Zombies map, rebuilt in Minecraft. Watch the full build, then take a look around.</p></header>
+    <header class="world-heading" data-reveal><div><p class="eyebrow">02 / NACHT DER UNTOTEN</p><h2 id="nacht-heading">NACHT DER UNTOTEN, <em>RECREATED.</em></h2></div><div><span class="status-tag">COMPLETE</span><p>Our complete Minecraft recreation of the original Zombies map, with map-accurate weapons, gameplay mechanics, sounds, and details from the original.</p></div></header>
     <div class="nacht-showcase" data-reveal><Video video={videos[1]} /></div>
     <div class="image-grid">{nachtGallery.map((item, index) => <figure data-reveal style={`--reveal-delay:${index * 70}ms`}><div class="image-crop"><Scene name={item.image} alt={item.alt} /></div><figcaption><span>0{index + 1}</span>{item.title}</figcaption></figure>)}</div>
-    <div class="section-cta" data-reveal><div><h3>Play Nacht der Untoten</h3><p>Get the world and its matching resource pack for Minecraft Java 26.2.</p></div><div class="actions"><a class="button" href={url('downloads/#nacht')}>Downloads <span aria-hidden="true">↓</span></a><a class="text-link" href={url('tutorials/#installation')}>Installation guide ↗</a></div></div>
+    <div class="section-cta" data-reveal><div><h3>Play Nacht der Untoten</h3><p>Get the world for Minecraft Java 26.2.</p></div><div class="actions"><a class="button" href={releases.maps} target="_blank" rel="noopener noreferrer">Download <span aria-hidden="true">↗</span></a><a class="text-link" href={url('tutorials/#installation')}>Installation guide ↗</a></div></div>
   </section>
 
   <section class="world-section build-section wrap" id="build" aria-labelledby="build-heading">
     <div class="build-intro" data-reveal><div><p class="eyebrow">03 / ZOMBIES BUILD KIT</p><h2 id="build-heading">Build<br /><em>your own.</em></h2><p>Turn your Minecraft world into a Zombies map. Place and configure gameplay systems in-game, with the kit handling rounds, interactions, and runtime setup.</p><div class="actions"><a class="button" href={url('tutorials/#getting-started')}>Start building ↗</a><a class="text-link" href={url('downloads/#kit')}>Get the kit ↓</a></div></div><div class="build-photo"><Scene name="nacht-interior" alt="Minecraft interior created with Zombies Build Kit" /><span>YOUR WORLD / ZOMBIES BUILD KIT</span></div></div>
-    <div class="system-grid">{systems.map((system, index) => <a href={url(`tutorials/#${system.anchor}`)} data-reveal style={`--reveal-delay:${index * 50}ms`}><span class="system-number">0{index + 1}<span aria-hidden="true">↗</span></span><h3>{system.title}</h3><p>{system.text}</p></a>)}</div>
-    <div class="section-cta" data-reveal><div><h3>From setup to your first round.</h3><p>Install the kit, place your first markers, and test your map.</p></div><a class="button" href={url('tutorials/')}>Open the guide ↗</a></div>
+    <ol class="build-steps" role="list">{systems.map((system, index) => <li data-reveal style={`--reveal-delay:${index * 50}ms`}><a href={url(`tutorials/#${system.anchor}`)}><span class="step-number" aria-hidden="true">0{index + 1}</span><h3>{system.title}</h3><p>{system.text}</p><span class="step-arrow" aria-hidden="true">↗</span></a></li>)}</ol>
+    <div class="section-cta" data-reveal><div><h3>Build your own Zombies map.</h3><p>Learn how to set up ZBK, configure your map, and bring its gameplay to life.</p></div><a class="button" href={url('tutorials/')}>Start building ↗</a></div>
   </section>
 </Layout>
 <style>
@@ -66,11 +65,17 @@ const systems = [
   .section-cta .button{flex-shrink:0}.button{border-radius:6px}.nacht-section{--accent:#d2b885}.build-section{--accent:#c5d0a2;border-bottom:0}
   .build-intro{display:grid;grid-template-columns:1fr 1.1fr;gap:8%;align-items:center}.build-intro p:not(.eyebrow){margin:25px 0;max-width:520px}
   .build-photo{position:relative;border-radius:12px;overflow:hidden}.build-photo :global(img){width:100%;aspect-ratio:1.1;object-fit:cover}.build-photo>span{position:absolute;bottom:0;inset-inline:0;padding:28px;background:linear-gradient(transparent,#080e10d9);font-size:10px;letter-spacing:.12em}
-  .system-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:55px}
-  .system-grid>a{padding:25px;border:1px solid var(--line);border-radius:10px;transition:background .2s}.system-grid>a:hover{background:#ffffff06}
-  .system-number{display:flex;justify-content:space-between;color:var(--accent);font-size:12px;margin-bottom:30px}
-  .system-grid h3{font:500 20px/1.3 var(--body);letter-spacing:-.025em;margin-bottom:14px}.system-grid p{font-size:13px}
-  @media(max-width:900px){.system-grid{grid-template-columns:1fr 1fr}.image-grid{gap:16px}.latest-feature{gap:8%}.section-cta{flex-wrap:wrap}}
-  @media(max-width:760px){.collection-bar{flex-direction:column;align-items:start;padding-block:22px}.collection-bar nav{gap:20px}.world-section{padding-block:50px}.world-heading{grid-template-columns:1fr;gap:24px}.world-heading h2,.build-intro h2{font-size:44px}.world-heading p:not(.eyebrow){font-size:15px}.image-grid{grid-template-columns:1fr}.image-crop :global(img){aspect-ratio:16/10}.latest-feature{grid-template-columns:1fr;margin-block:45px;gap:25px}.latest-feature :global(.video-feature){width:min(100%,330px);justify-self:center}.section-cta{padding:24px;gap:22px}.section-cta h3{font-size:22px}.build-intro{grid-template-columns:1fr;gap:30px}.build-photo :global(img){aspect-ratio:4/3}.system-grid{gap:12px;margin-top:30px}.system-grid>a{padding:18px}.system-grid h3{font-size:18px}}
-  @media(max-width:380px){.system-grid{grid-template-columns:1fr}}
+  @media(max-width:900px){.image-grid{gap:16px}.latest-feature{gap:8%}.section-cta{flex-wrap:wrap}}
+  @media(max-width:760px){.collection-bar{flex-direction:column;align-items:start;padding-block:22px}.collection-bar nav{gap:20px}.world-section{padding-block:50px}.world-heading{grid-template-columns:1fr;gap:24px}.world-heading h2,.build-intro h2{font-size:44px}.world-heading p:not(.eyebrow){font-size:15px}.image-grid{grid-template-columns:1fr}.image-crop :global(img){aspect-ratio:16/10}.latest-feature{grid-template-columns:1fr;margin-block:45px;gap:25px}.latest-feature :global(.video-feature){width:min(100%,330px);justify-self:center}.section-cta{padding:24px;gap:22px}.section-cta h3{font-size:22px}.build-intro{grid-template-columns:1fr;gap:30px}.build-photo :global(img){aspect-ratio:4/3}}
+  .build-steps{list-style:none;padding:0;margin:55px 0 0}
+  .build-steps li{border-top:1px solid var(--line)}
+  .build-steps li:last-child{border-bottom:1px solid var(--line)}
+  .build-steps a{display:grid;grid-template-columns:45px minmax(180px,1fr) minmax(0,1.4fr) 24px;align-items:center;gap:28px;padding:30px 12px;transition:background .2s}
+  .build-steps a:hover{background:#ffffff06}
+  .step-number,.step-arrow{color:var(--accent)}
+  .step-number{font-size:12px}
+  .step-arrow{justify-self:end}
+  .build-steps h3{font:500 24px/1.3 var(--body);letter-spacing:-.025em}
+  .build-steps p{font-size:14px}
+  @media(max-width:760px){.build-steps{margin-top:30px}.build-steps a{grid-template-columns:28px minmax(0,1fr) 20px;gap:12px;padding:24px 0}.build-steps h3{font-size:21px}.build-steps p{grid-column:2;grid-row:2}.step-arrow{grid-column:3;grid-row:1}}
 </style>

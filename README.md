@@ -1,6 +1,6 @@
 # ZBK showcase
 
-An independent Astro website for Zombies Build Kit: map experiences, contextual YouTube videos, a video hub, download placeholders, and an on-site builder guide. The standalone repository is [Stews-Creations/zbk_website](https://github.com/Stews-Creations/zbk_website). GitHub Pages deployment is available through the included workflow.
+An independent Astro website for Zombies Build Kit: map experiences, contextual YouTube videos, social channels, release links, and an on-site builder guide. The standalone repository is [Stews-Creations/zbk_website](https://github.com/Stews-Creations/zbk_website). GitHub Pages deployment is available through the included workflow.
 
 ## Run locally
 
@@ -13,13 +13,17 @@ npm run dev
 
 Open the local address printed by Astro. For a production preview, run `npm run build` followed by `npm run preview`.
 
+Astro dev, check, sync, build, and preview use separate Vite dependency caches, so validation and builds do not interrupt a running dev server's 3D model loading. Check and sync also use Vite's serve mode internally, so the cache is selected by the Astro command. If a model or its runtime cannot load, the viewer suggests reloading and keeps the screenshots available.
+
 ## Content ownership
+
+External navigation opens in a new tab; internal routes and anchors stay in the current tab. Video previews still open the on-site player, with external YouTube links opening separately.
 
 | Location | Responsibility |
 | --- | --- |
-| [src/pages](src/pages) | Homepage, map showcases, downloads, builder guide, tutorials, videos, and 404 |
+| [src/pages](src/pages) | Homepage, map showcases, downloads, builder guide, tutorials, Connect, and 404 |
 | [src/data/site.ts](src/data/site.ts) | Base-aware URLs and curated video records |
-| [src/data/releases.ts](src/data/releases.ts) | Minecraft compatibility and nullable release/download links |
+| [src/data/releases.ts](src/data/releases.ts) | Minecraft compatibility and GitHub release listings |
 | [src/components](src/components) | Responsive screenshots, 3D viewers, video previews, and download buttons |
 | [src/layouts/Layout.astro](src/layouts/Layout.astro) | Navigation, metadata, footer, and video dialog |
 | [src/styles/global.css](src/styles/global.css) | Shared visual design and mobile layout |
@@ -28,15 +32,17 @@ Open the local address printed by Astro. For a production preview, run `npm run 
 | [public/images](public/images) | Optimized versions of the supplied in-game screenshots |
 | [public/models](public/models) | Self-contained optimized GLBs and generated conversion reports |
 
-The user confirmed Minecraft Java Edition 26.2. Download destinations intentionally remain `null`; the website renders disabled controls with a visible "Download link coming soon" label. Replace them with final HTTPS GitHub Release asset URLs and a release version when available. Do not point a world button at a resource pack or advertise a guessed release. The `githubRelease` setting is reserved for the release notes destination.
+The site targets Minecraft Java Edition 26.2. Downloads links to the map, datapack, and resource pack GitHub release listings configured in [src/data/releases.ts](src/data/releases.ts). Buttons say "View releases" rather than promising a direct asset or an unverified version. Availability and package details live in the release notes.
 
-Der Eisendrache is in development. Nacht has its own showcase and world/resource-pack download panel. When Der Eisendrache releases, update its page status, add its release assets to the data file, and replace the development-only row in Downloads with a world/resource-pack panel.
+Der Eisendrache is in development. Nacht has its own showcase and world download panel. Map and starter world archives include their resource pack; structures are included in the datapack. The guide separates bundled-world installation from installing the standalone datapack and resource pack in a custom world. When Der Eisendrache releases, update its page status and replace the development-only row in Downloads with a world download panel.
 
 Both supplied YouTube IDs are configured. Nacht starts at the beginning (0:00). Clicking a preview opens a privacy-enhanced YouTube embed; the original platform link remains available if embedding is blocked. No iframe or third-party player is loaded before a visitor chooses to play. Local screenshot posters are map previews, not claimed frames from the videos.
 
-TikTok and Reels filters currently show an honest empty state. Verified profile links live on the Connect page; no API tokens or invented videos are included. The latest YouTube Short refreshes at build time as documented below; the full Nacht showcase stays curated. TikTok/Instagram integrations require profile identifiers and supported APIs or embeds. Never put private API tokens into browser code.
+Verified profile links live on the Connect page; no API tokens or invented videos are included. The latest YouTube Short refreshes at build time as documented below; the full Nacht showcase stays curated. TikTok/Instagram integrations require profile identifiers and supported APIs or embeds. Never put private API tokens into browser code.
 
 ## Visual assets and motion
+
+Downloads uses dark gradients, subtle grid lines, and shaded panels to keep the release information readable. Its decorative layers do not capture input or add animation.
 
 The seven screenshots supplied in `todo/screenshots` of the original datapack workspace were copied as responsive WebP assets at widths 800, 1600, and 2400 pixels. Copies are independent of that workspace; no runtime symlinks or parent-repository imports are used. To regenerate from the original screenshots:
 
@@ -75,7 +81,7 @@ npm run validate
 npm run validate:models
 ```
 
-The validator checks generated internal links, fragment IDs, asset references, page titles, one H1 per page, and documentation link targets. Test the map/video navigation, playback dialog close/Escape/focus behavior, filters, mobile menu, motion control, and copy-command feedback in the browser after interaction changes. Verify layouts at mobile and desktop widths. Downloads deliberately stay disabled until real URLs exist.
+The validator checks generated internal links, fragment IDs, asset references, page titles, one H1 per page, and documentation link targets. Test the map/video navigation, playback dialog close/Escape/focus behavior, mobile menu, motion control, and copy-command feedback in the browser after interaction changes. Verify layouts at mobile and desktop widths. Download buttons open the configured GitHub release listings; they do not imply that every package already has a published release.
 
 ## GitHub Pages deployment
 
@@ -108,7 +114,9 @@ The GitHub Pages workflow also rebuilds hourly after the repository is published
 
 ## Connect page
 
-The main Connect navigation opens `/connect/`, a MiniStew and Big_Stew community/contact page with direct YouTube, Instagram, TikTok, and Discord links supplied by the owner. Discord is the contact destination; there is no nonfunctional form or invented email address. The MiniStew and Big_Stew developer portraits come from the supplied screenshots and the stew-bowl logo from the repository manager assets, copied into [public/images](public/images). The video hub remains available at `/videos/` and is linked from Connect.
+The field guide ends with a Discord help link using the same community invite as the Connect page.
+
+The main Connect navigation opens `/connect/`, a MiniStew and Big_Stew community/contact page with direct YouTube, Instagram, TikTok, and Discord links supplied by the owner. Discord is the contact destination; there is no nonfunctional form or invented email address. The MiniStew and Big_Stew developer portraits come from the supplied screenshots and the stew-bowl logo from the repository manager assets, copied into [public/images](public/images). The homepage links to the social cards at `/connect/#socials` for more videos and updates.
 
 Transparent character cutouts derived from the supplied portraits use the `*-cutout.png` assets; originals are retained. Cutouts sit directly on the page with soft light and shadows, in separate columns from the copy so they do not cover text.
 

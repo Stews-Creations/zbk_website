@@ -1,5 +1,6 @@
 ---
 interface Props { href: string | null; label: string; }
 const { href, label } = Astro.props;
+const external = href ? new URL(href, Astro.url).origin !== Astro.url.origin : false;
 ---
-{href ? <a class="button" href={href}>{label} ↓</a> : <div class="pending-download"><button class="button" disabled>{label} ↓</button><span>Download link coming soon</span></div>}
+{href ? <a class="button" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>{label} ↓</a> : <div class="pending-download"><button class="button" disabled>{label} ↓</button><span>Download link coming soon</span></div>}

@@ -20,8 +20,8 @@ import { url, videos } from '../data/site';
       <h1><span data-hero-line-one>DER</span><br /><span data-hero-line-two>EISENDRACHE</span><br /><em data-hero-accent>IN MINECRAFT</em></h1>
       <div class="actions">
         <a class="button" data-hero-link href={url('#der-eisendrache')}>Explore</a>
-        <a class="text-link" data-hero-video="de" data-map="de" href={videos[0].href} data-video={videos[0].id} data-vertical="true" data-title={videos[0].title}><span aria-hidden="true">▶</span> Watch the latest</a>
-        <a class="text-link" data-hero-video="nacht" data-map="nacht" href={videos[1].href} data-video={videos[1].id} data-start={videos[1].start} data-title={videos[1].title} hidden><span aria-hidden="true">▶</span> Watch the build</a>
+        <a class="text-link" data-hero-video="de" data-map="de" href={videos[0].href} target="_blank" rel="noopener noreferrer" data-video={videos[0].id} data-vertical="true" data-title={videos[0].title}><span aria-hidden="true">▶</span> Watch the latest</a>
+        <a class="text-link" data-hero-video="nacht" data-map="nacht" href={videos[1].href} target="_blank" rel="noopener noreferrer" data-video={videos[1].id} data-start={videos[1].start} data-title={videos[1].title} hidden><span aria-hidden="true">▶</span> Watch the build</a>
       </div>
       <div class="hero-meta"><span class="mini-block" aria-hidden="true">▣</span> MINECRAFT JAVA <span class="dot-separator">/</span> 26.2 <span class="dot-separator">/</span> BUILT WITH ZBK</div>
     </div>
@@ -29,7 +29,7 @@ import { url, videos } from '../data/site';
   <button class="hero-arrow hero-arrow-prev" data-hero-prev aria-label="Previous: Build your own" hidden><span aria-hidden="true">‹</span></button>
   <button class="hero-arrow hero-arrow-next" data-hero-next aria-label="Next: Nacht der Untoten" hidden><span aria-hidden="true">›</span></button>
   <div class="hero-bottom wrap">
-    <a href="#discover" class="scroll-cue"><span>↓</span> SCROLL TO EXPLORE</a>
+    <a href="#der-eisendrache" class="scroll-cue"><span>↓</span> SCROLL TO EXPLORE</a>
     <div class="hero-selectors" role="group" aria-label="Choose a featured slide" hidden>
       <button type="button" data-hero-select="0" aria-pressed="true">Der Eisendrache</button>
       <button type="button" data-hero-select="1" aria-pressed="false">Nacht</button>

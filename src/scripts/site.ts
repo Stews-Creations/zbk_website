@@ -89,14 +89,6 @@ dialog.addEventListener('close', () => {
   player.replaceChildren(); body.classList.remove('modal-open');
   document.dispatchEvent(new Event('video:visibility'));
 });
-document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(button => button.addEventListener('click', () => {
-  const filter = button.dataset.filter;
-  document.querySelectorAll('[data-filter]').forEach(el => el.setAttribute('aria-pressed', String(el === button)));
-  let count = 0;
-  document.querySelectorAll<HTMLElement>('[data-category]').forEach(el => { el.hidden = filter !== 'all' && el.dataset.category !== filter; if (!el.hidden) count++; });
-  const empty = document.querySelector<HTMLElement>('#empty-content');
-  if (empty) empty.hidden = count > 0;
-}));
 document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach(button => button.addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(button.dataset.copy || ''); button.textContent = 'Copied'; }
   catch { button.textContent = 'Select and copy the command'; }
