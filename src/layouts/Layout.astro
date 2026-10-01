@@ -36,8 +36,8 @@ const current = Astro.url.pathname;
       </nav>
     </header>
     <main id="main"><slot /></main>
-    <footer class="site-footer wrap">
-      <div class="footer-main"><a href={url()} class="footer-logo">ZBK</a><p>PLAY OURS.<br />BUILD YOURS.</p><div><a href={url('#der-eisendrache')}>Explore our maps ↗</a><a href={url('tutorials/')}>Build your own ↗</a><button id="motion-toggle" aria-pressed="false">Motion: on</button></div></div>
+    <footer class="site-footer">
+      <div class="footer-main"><a class="brand" href={url()} aria-label="ZBK home"><span class="brand-mark">ZBK<span>⌜</span></span><span class="brand-name">ZOMBIES<br />BUILD KIT</span></a><div><a href={url('#der-eisendrache')}>Explore our maps ↗</a><a href={url('tutorials/')}>Build your own ↗</a><button id="motion-toggle" aria-pressed="false">Motion: on</button></div></div>
       <div class="footer-bottom"><span>ZOMBIES BUILD KIT · MINECRAFT JAVA EDITION</span><p>An unofficial fan project. Not affiliated with or endorsed by Activision, Treyarch, Mojang, or Microsoft. Original map concepts belong to their respective owners.</p></div>
     </footer>
     <dialog id="video-dialog" aria-labelledby="video-title">

@@ -42,6 +42,8 @@ Verified profile links live on the Connect page; no API tokens or invented video
 
 ## Visual assets and motion
 
+The footer uses the navigation bar's compact branding, horizontal links, and typography, with matching page gutters and a full-width line above the footer. Footer links and the motion control align with the bottom of the brand. Links wrap on small screens; the fan-project notice stays on one line below and scrolls horizontally when space is limited.
+
 Downloads uses dark gradients, subtle grid lines, and shaded panels to keep the release information readable. Its decorative layers do not capture input or add animation.
 
 The seven screenshots supplied in `todo/screenshots` of the original datapack workspace were copied as responsive WebP assets at widths 800, 1600, and 2400 pixels. Copies are independent of that workspace; no runtime symlinks or parent-repository imports are used. To regenerate from the original screenshots:
@@ -52,7 +54,7 @@ node scripts/prepare-assets.mjs /absolute/path/to/screenshots
 
 The site uses original map imagery and real exported Minecraft map models. The home hero has a static, dimmed castle screenshot behind the model without image parallax; other image sections retain pointer/scroll depth. All 3D viewers load automatically when visible on every screen size, including touch devices. Hidden carousel models wait until their slide is selected. There is no activation button; reduced-motion preferences still disable entrance animation. A footer control disables parallax; its preference is stored locally when browser storage is available. Core content and links remain usable without JavaScript. Fonts are packaged locally through Fontsource; no external font requests are required.
 
-The home hero is a manual three-slide carousel: Der Eisendrache, Nacht der Untoten, and Build your own. Both equal-sized side arrows stay visible at the viewport edges and wrap in either direction, without automatic advancement; the scroll-to-explore link stays available. Three named buttons along the bottom jump directly to a slide and highlight the active selection. Selecting a map slide loads its 3D viewer on demand. Inactive slides are hidden from keyboard and assistive-technology navigation, and returning preserves the model rotation. Each hero Explore button scrolls to its matching home-page section: #der-eisendrache, #nacht, or #build. Without JavaScript, the first slide and its Explore link remain usable.
+The home hero is a manual three-slide carousel: Der Eisendrache, Nacht der Untoten, and Build your own. The Build your own hero badge reads "EARLY RELEASE" in the slide's green accent. The Nacht hero badge reads "COMPLETE"; it and the Der Eisendrache "IN DEVELOPMENT" badge use the same colors as their section status badges. Both equal-sized side arrows stay visible at the viewport edges and wrap in either direction, without automatic advancement; the scroll-to-explore link stays available. Three named buttons along the bottom jump directly to a slide and highlight the active selection. Selecting a map slide loads its 3D viewer on demand. Inactive slides are hidden from keyboard and assistive-technology navigation, and returning preserves the model rotation. Each hero Explore button scrolls to its matching home-page section: #der-eisendrache, #nacht, or #build. Without JavaScript, the first slide and its Explore link remain usable.
 
 ## 3D model pipeline
 
@@ -113,6 +115,8 @@ Map screenshots and ZBK content are supplied by the project owner. Nacht der Unt
 The GitHub Pages workflow also rebuilds hourly after the repository is published and Actions/Pages are enabled. GitHub schedules may be delayed or disabled after repository inactivity. This is build-time freshness, not a live lookup on every visitor request. The local preview changes only after a new build. No API key or third-party proxy is used: the parser reads YouTube's public Shorts page, whose format may change. Local failures warn and preserve the last verified video; CI failures stop deployment so the previous site remains online. Run `npm run test:youtube` for parser checks.
 
 ## Connect page
+
+The field guide shows the map-building flow as left-aligned numbered steps with downward arrows at every screen size.
 
 The field guide ends with a Discord help link using the same community invite as the Connect page.
 
