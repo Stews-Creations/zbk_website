@@ -32,7 +32,7 @@ External navigation opens in a new tab; internal routes and anchors stay in the 
 | [public/images](public/images) | Optimized versions of the supplied in-game screenshots |
 | [public/models](public/models) | Self-contained optimized GLBs and generated conversion reports |
 
-The site targets Minecraft Java Edition 26.2. Downloads links to the map, datapack, and resource pack GitHub release listings configured in [src/data/releases.ts](src/data/releases.ts). Buttons say "View releases" rather than promising a direct asset or an unverified version. Availability and package details live in the release notes.
+The site targets Minecraft Java Edition 26.3. Downloads links to the map, datapack, and resource pack GitHub release listings configured in [src/data/releases.ts](src/data/releases.ts). Buttons say "View releases" rather than promising a direct asset or an unverified version. Availability and package details live in the release notes.
 
 Der Eisendrache is in development. Nacht has its own showcase and world download panel. Map and starter world archives include their resource pack; structures are included in the datapack. The guide separates bundled-world installation from installing the standalone datapack and resource pack in a custom world. When Der Eisendrache releases, update its page status and replace the development-only row in Downloads with a world download panel.
 
